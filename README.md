@@ -4,6 +4,7 @@
 * Installation
 * Architechture
 * Create Image
+* App Containerisation
 
 ### Docker Installation
 ![](https://i.imgur.com/H8jc6XA.png)
@@ -40,3 +41,30 @@ wsl --update
 11. docker push harrypaterson/nginx-tech241
 12. docker run -d -p 100:80 harrypaterson/nginx-tech241
 
+### App Containerisation
+1. In app folder create Dockerfile
+2. Configure Dockerfile
+```
+# select base image
+FROM node:12
+
+# Set the working directory in the Docker image
+WORKDIR /usr/src/app
+
+# Copy the package.json and package-lock.json files into the Docker image
+COPY package*.json ./
+
+# Install the application dependencies inside the Docker image
+RUN npm install
+
+# Copy the rest of the application into the Docker image
+COPY . .
+
+# Expose port 3000 to have it mapped by Docker daemon
+EXPOSE 3000
+
+# The command to run when the container starts
+CMD [ "node", "app.js" ]
+```
+3. docker  build -t harrypaterson/tech241-node .
+4. docker run -d -p 3001:3000 harrypaterson/tech241-node
