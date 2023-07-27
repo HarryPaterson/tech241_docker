@@ -18,4 +18,4 @@ wsl --update
 5. Through control panel navigate to Programs -> Programs and Features
 6. Turn Windows Features on or off
 7. Check Hyper-V
-8. Restart system to take effect# tech241_docker
+8. Restart system to take effect
